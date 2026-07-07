@@ -8,6 +8,10 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Added
+
+- ✨(backend) add per-recording encoding quality presets to start-recording API
+
 ### Changed
 
 - 🗑️(settings) deprecate SUMMARY_SERVICE_VERSION=1

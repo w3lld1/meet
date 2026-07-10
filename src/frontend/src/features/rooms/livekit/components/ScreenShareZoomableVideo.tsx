@@ -50,6 +50,11 @@ export const ScreenShareZoomableVideo = ({
     return () => el.removeEventListener('keydown', zoom.handleKeyDown)
   }, [tileRef, zoom.handleKeyDown])
 
+  let panCursor: React.CSSProperties['cursor'] = 'default'
+  if (zoom.isZoomed) {
+    panCursor = zoom.isDragging ? 'grabbing' : 'grab'
+  }
+
   return (
     <>
       {/* Pan/zoom surface - Ctrl+wheel to zoom, drag when zoomed. */}
@@ -63,11 +68,7 @@ export const ScreenShareZoomableVideo = ({
           userSelect: 'none',
         })}
         style={{
-          cursor: zoom.isZoomed
-            ? zoom.isDragging
-              ? 'grabbing'
-              : 'grab'
-            : 'default',
+          cursor: panCursor,
         }}
         onWheel={zoom.handleWheel}
         onMouseDown={zoom.handlePanStart}

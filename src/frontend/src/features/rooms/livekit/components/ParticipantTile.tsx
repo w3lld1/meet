@@ -55,6 +55,8 @@ interface ParticipantTileExtendedProps extends ParticipantTileProps {
   disableMetadata?: boolean
 }
 
+const MOUSE_IDLE_TIME = 3000
+
 export const ParticipantTile: (
   props: ParticipantTileExtendedProps & React.RefAttributes<HTMLDivElement>
 ) => React.ReactNode = /* @__PURE__ */ React.forwardRef<
@@ -116,7 +118,6 @@ export const ParticipantTile: (
   const [isTileHovered, setIsTileHovered] = React.useState(false)
   const [isIdle, setIsIdle] = React.useState(false)
   const idleTimerRef = React.useRef<number | null>(null)
-  const MOUSE_IDLE_TIME = 3000
 
   const handleTileMouseMove = React.useCallback(() => {
     if (idleTimerRef.current) window.clearTimeout(idleTimerRef.current)

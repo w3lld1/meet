@@ -15,7 +15,7 @@ and this project adheres to
 
 ### Added
 
-✨(frontend) add screen share zoom controls #1498
+- ✨(frontend) add screen share zoom controls #1498
 
 ## [1.23.0] - 2026-07-08
 

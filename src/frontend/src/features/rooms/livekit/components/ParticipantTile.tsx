@@ -167,6 +167,35 @@ export const ParticipantTile: (
       trackReference.source === Track.Source.Camera ||
       trackReference.source === Track.Source.ScreenShare)
 
+  let trackMedia: React.ReactNode = null
+  if (isVideoTrack) {
+    if (isRemoteScreenShare) {
+      trackMedia = (
+        <ScreenShareZoomableVideo
+          trackRef={trackReference}
+          tileRef={tileRef}
+          onSubscriptionStatusChanged={handleSubscribe}
+          manageSubscription={autoManageSubscription}
+        />
+      )
+    } else {
+      trackMedia = (
+        <VideoTrack
+          trackRef={trackReference}
+          onSubscriptionStatusChanged={handleSubscribe}
+          manageSubscription={autoManageSubscription}
+        />
+      )
+    }
+  } else if (isTrackReference(trackReference)) {
+    trackMedia = (
+      <AudioTrack
+        trackRef={trackReference}
+        onSubscriptionStatusChanged={handleSubscribe}
+      />
+    )
+  }
+
   return (
     <div
       ref={setRefs}
@@ -188,29 +217,7 @@ export const ParticipantTile: (
           <FullScreenShareWarning trackReference={trackReference} />
           {children ?? (
             <>
-              {isVideoTrack ? (
-                isRemoteScreenShare ? (
-                  <ScreenShareZoomableVideo
-                    trackRef={trackReference}
-                    tileRef={tileRef}
-                    onSubscriptionStatusChanged={handleSubscribe}
-                    manageSubscription={autoManageSubscription}
-                  />
-                ) : (
-                  <VideoTrack
-                    trackRef={trackReference}
-                    onSubscriptionStatusChanged={handleSubscribe}
-                    manageSubscription={autoManageSubscription}
-                  />
-                )
-              ) : (
-                isTrackReference(trackReference) && (
-                  <AudioTrack
-                    trackRef={trackReference}
-                    onSubscriptionStatusChanged={handleSubscribe}
-                  />
-                )
-              )}
+              {trackMedia}
               <div className="lk-participant-placeholder">
                 <ParticipantPlaceholder
                   participant={trackReference.participant}

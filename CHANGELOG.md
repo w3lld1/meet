@@ -13,6 +13,10 @@ and this project adheres to
 - 🗑️(settings) deprecate SUMMARY_SERVICE_VERSION=1
 - ⬆️(mail) update mjml to v5 and @html-to/text-cli
 
+### Added
+
+✨(frontend) add screen share zoom controls #1498
+
 ## [1.23.0] - 2026-07-08
 
 ### Added

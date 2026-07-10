@@ -172,7 +172,14 @@ export const ParticipantTile: (
       style={{ position: 'relative' }}
       {...interactiveProps}
       onMouseEnter={() => setIsTileHovered(true)}
-      onMouseLeave={() => setIsTileHovered(false)}
+      onMouseLeave={() => {
+        setIsTileHovered(false)
+        setIsIdle(false)
+        if (idleTimerRef.current) {
+          window.clearTimeout(idleTimerRef.current)
+          idleTimerRef.current = null
+        }
+      }}
       onMouseMove={handleTileMouseMove}
     >
       <TrackRefContextIfNeeded trackRef={trackReference}>
